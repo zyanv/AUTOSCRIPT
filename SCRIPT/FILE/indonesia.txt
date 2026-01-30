@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "=== 🔁 Mengganti Repository Ubuntu ke Mirror Indonesia ==="
+
+# Backup sources.list lama
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+
+# Ganti isi sources.list dengan mirror Indonesia (kartolo.sby.datautama.net.id)
+sudo tee /etc/apt/sources.list > /dev/null <<EOF
+deb http://kartolo.sby.datautama.net.id/ubuntu focal main restricted universe multiverse
+deb http://kartolo.sby.datautama.net.id/ubuntu focal-updates main restricted universe multiverse
+deb http://kartolo.sby.datautama.net.id/ubuntu focal-backports main restricted universe multiverse
+deb http://kartolo.sby.datautama.net.id/ubuntu focal-security main restricted universe multiverse
+EOF
+
+echo "✅ Repository diganti ke server Indonesia (kartolo.sby.datautama.net.id)"
+
+echo ""
+echo "=== 🚫 Menonaktifkan IPv6 Permanen ==="
+
+# Tambahkan konfigurasi ke /etc/sysctl.conf
+sudo tee -a /etc/sysctl.conf > /dev/null <<EOF
+
+# Disable IPv6 permanen
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+EOF
+
+# Terapkan perubahan
+sudo sysctl -p
+
+# Verifikasi status IPv6
+status_ipv6=$(cat /proc/sys/net/ipv6/conf/all/disable_ipv6)
+if [[ "$status_ipv6" == "1" ]]; then
+  echo "✅ IPv6 berhasil dinonaktifkan!"
+else
+  echo "⚠️ IPv6 belum nonaktif. Coba reboot jika perlu."
+fi
+
+echo ""
+echo "=== 🔄 Menjalankan apt update ==="
+sudo apt update
+
+echo ""
+echo "🎉 Selesai! Repository sudah diganti dan IPv6 dimatikan."
