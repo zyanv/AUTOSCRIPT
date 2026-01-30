@@ -54,7 +54,6 @@ Ready to Sell After Installation
 
 ========================================================================================================================================================================================
 ## FOR INDONESIAN SERVER OR VPS, USE THIS SCRIPT TO PREVENT SLOWNS :
-
 ```
 wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/indonesia && chmod +x indonesia && ./indonesia
 ```
@@ -63,16 +62,12 @@ wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/indonesia && chm
 ## HOW TO GET ROOT ACCESS TO A VPS THAT IS NOT ALLOWED AS ROOT :
 
 ### get root access to your vps
-
 ``````
   wget -qO- -O aksesroot.sh https://github.com/zyanv/script-vps/raw/refs/heads/main/aksesroot.sh && bash aksesroot.sh
-
 ```````
 ========================================================================================================================================================================================
 # BONUS : 
 ## REBUILD MANUAL SCRIPT TO YOUR VPS  :
-
 ``````
   curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh Debian 12
-
 ```````
