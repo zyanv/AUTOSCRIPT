@@ -42,7 +42,7 @@ Comprehensive Usage Guide
 
 Ready to Sell After Installation
 
-🛠️ COCOK UNTUK:
+🛠️ SUITABLE FOR : 
 ✅ VPN Account Sellers
 ✅ SSH/WebSocket Service Providers
 ✅ Personal Users Seeking Automation
