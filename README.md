@@ -27,7 +27,7 @@ wget https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/setup.s
 
 - ✅ Auto Create Akun: Xray, SSH, Websocket, HTTP Upgrade & ETC
 - ✅ Add & Delete User
-- ✅ Limit Kuota & Limit IP
+- ✅ Limit Quota & Limit IP
 - ✅ Auto Kick User
 - ✅ Simple & Fast Panel, Suitable for Beginners and Account Sellers
 - ✅ Support IPv4, Disable IPv6
@@ -52,13 +52,13 @@ Ready to Sell After Installation
 
 
 
-==========================================================================================================================================================================================
+========================================================================================================================================================================================
 ## FOR INDONESIAN SERVER OR VPS, USE THIS SCRIPT TO PREVENT SLOWNS :
 
 ```
 wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/indonesia && chmod +x indonesia && ./indonesia
 ```
-===========================================
+========================================================================================================================================================================================
 # BONUS : 
 ## HOW TO GET ROOT ACCESS TO A VPS THAT IS NOT ALLOWED AS ROOT :
 
@@ -68,7 +68,7 @@ wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/indonesia && chm
   wget -qO- -O aksesroot.sh https://github.com/zyanv/script-vps/raw/refs/heads/main/aksesroot.sh && bash aksesroot.sh
 
 ```````
-===========================================
+========================================================================================================================================================================================
 # BONUS : 
 ## REBUILD MANUAL SCRIPT TO YOUR VPS  :
 
