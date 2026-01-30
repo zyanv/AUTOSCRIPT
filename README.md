@@ -1,82 +1,78 @@
-# script-vps
+# SCRIPT-VPS
 
 
 ## 🚀  SCRIPT VPS PREMIUM
 
-Tampilan utama dari aplikasi ini dirancang agar mudah digunakan dan responsif, memberikan pengalaman pengguna yang maksimal.
-
+The application’s main interface is designed to be intuitive and responsive, ensuring an optimal user experience.
 
 ### CARA INSTALL SCRIPT 
 
-1. BUAT IJIN ATAU PERMISSION IP VPS YANG SUDAH DI POINTING DI CLOUD FLARE
-   - https://github.com/zyanv/permission/blob/main/ijin
+1. Create permission for the VPS IP that is pointed through Cloudflare.
+   - https://github.com/zyanv/AUTOSCRIPT/IP/main/permission
 
-2. COPY PASTE SCRIPT INI PADA VPS UBUNTU 20 UNTUK INSTALLASI :
+2. COPY PASTE THIS SCRIPT ON YOUR VPS DEBIAN 12 FOR INSTALLATION :
 ```
-apt install -y && apt update -y && apt upgrade -y && wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/install && chmod +x install && ./install
+wget https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/setup.sh && chmod +x setup.sh && ./setup.sh
 ```
 
-3. UPDATE SCRIPT SETELAH INSTALL SCRIPT VPS
-   
-## UPDATE SCRIPT
-```
-wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/update-script && chmod +x update-script && ./update-script
-```
 4. SCRIPT VPS SIAP DI GUNAKAN
 
    
 ### SUPPORT OS LINUX
-🎯 JUAL & SEWA SCRIPT VPS PREMIUM - AUTO XRAY, SSH, WEBSOCKET, SHADOWSOCKS & LAINNYA 🚀
+🎯 SALE & RENT SCRIPT VPS PREMIUM - AUTO XRAY, VLESS, WEBSOCKET, HTTP UPGRADE & ETC 🚀
 
 🔥 FULL FITUR & SIAP PAKAI UNTUK JUALAN AKUN! 🔥
 
 🔧 FITUR UNGGULAN SCRIPT:
 
-- ✅ Auto Create Akun: Xray, SSH, Websocket, Shadowsocks, dll
+- ✅ Auto Create Akun: Xray, SSH, Websocket, HTTP Upgrade & ETC
 - ✅ Add & Delete User
 - ✅ Limit Kuota & Limit IP
-- ✅ Trial Harian / Per Jam
-- ✅ Auto Kick User Aktif Ganda
-- ✅ Bot Telegram: Notifikasi Pembuatan Akun Langsung ke Telegram
-- ✅ Panel Simpel & Cepat, Cocok Untuk Pemula & Penjual Akun
-- ✅ Dukungan IPv4 & IPv6
-- ✅ Fast & Ringan, Hemat Resource VPS
+- ✅ Auto Kick User
+- ✅ Simple & Fast Panel, Suitable for Beginners and Account Sellers
+- ✅ Support IPv4, Disable IPv6
+- ✅ Fast & Lightweight, Resource-Efficient VPS
 
 
 🎁 BONUS:
 
-Bantuan Install & Setup (untuk pembeli pertama)
+Install & Setup Assistance (For First-Time Buyers)
 
-Panduan Penggunaan Lengkap
+Comprehensive Usage Guide
 
-Siap Jualan Setelah Install
+Ready to Sell After Installation
 
 🛠️ COCOK UNTUK:
-✅ Penjual Akun VPN
-✅ Penyedia Layanan SSH/Websocket
-✅ Pengguna Pribadi yang Ingin Otomatisasi
+✅ VPN Account Sellers
+✅ SSH/WebSocket Service Providers
+✅ Personal Users Seeking Automation
 
-📩 Minat? Langsung DM / Chat Saya!
-📱 Bisa juga integrasi ke bot Telegram jualan kamu!
-
-
+📩 Interested? DM/Chat me now!
+📱 You can also integrate it with our Telegram Sales Bot!
 
 
 
 ==========================================================================================================================================================================================
-## UNTUK SERVER INDONESIA ATAU VPS INDONESIA GUNAKAN SCRIPT INI AGAR TIDAK LEMOT
+## FOR INDONESIAN SERVER OR VPS, USE THIS SCRIPT TO PREVENT SLOWNS :
 
 ```
 wget -q https://github.com/zyanv/script-vps/raw/refs/heads/main/indonesia && chmod +x indonesia && ./indonesia
 ```
 ===========================================
 # BONUS : 
-## CARA MENDAPATKAN AKSES ROOT VPS YANG TIDAK DI IJINKAN SEBAGAI ROOT :
+## HOW TO GET ROOT ACCESS TO A VPS THAT IS NOT ALLOWED AS ROOT :
 
-### mendapatkan akses root ke vps mu
+### get root access to your vps
 
 ``````
-
   wget -qO- -O aksesroot.sh https://github.com/zyanv/script-vps/raw/refs/heads/main/aksesroot.sh && bash aksesroot.sh
+
+```````
+===========================================
+# BONUS : 
+## REBUILD MANUAL SCRIPT TO YOUR VPS  :
+
+``````
+  curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh Debian 12
 
 ```````
