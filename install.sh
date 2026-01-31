@@ -151,13 +151,6 @@ OOMScoreAdjust=100
 [Install]
 WantedBy=multi-user.target
 EOF'
-    check_success "Gagal mengkonfigurasi layanan systemd untuk Xray-core."
-
-    sudo systemctl daemon-reload
-    sudo systemctl enable xray
-    sudo systemctl start xray
-    check_success "Gagal memulai layanan Xray-core."
-}
 
 # Deteksi OS
 print_msg $YB "Mendeteksi sistem operasi..."
