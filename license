@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+# Auto-Installer: Dual-Engine Cloudflare WARP
+# [1] Proxy (SOCKS5) : Service warp-proxy (shahradelahi/cloudflare-warp) di port 40000
+# [2] WG (Full)      : Menggunakan warp.sh (wgd - Dual Stack)
+# [3] Danted         : Fallback proxy SOCKS5 port 40000 (sudah terinstall)
+# [NOTE] WARP Proxy dan WireGuard Full dapat aktif bersamaan
+#
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[1;36m'
+MAGENTA='\033[1;35m'
+NC='\033[0m'
+BOLD='\033[1m'
+
+# ==========================================
+# [3] PENGATURAN LISENSI
+# ==========================================
+change_license() {
+    clear
+    echo -e "${CYAN}=== GANTI CUSTOM LICENSE (WARP+) ===${NC}"
+    read -p "License Key (Kosongkan lalu Enter untuk kembali ke Gratis): " custom_license
+
+    local done_something=0
+
+    # WARP Proxy (shahradelahi) - via warp binary
+    if command -v warp &>/dev/null; then
+        echo -e "\n${CYAN}Menerapkan ke WARP Proxy Service...${NC}"
+        if [[ -n "$custom_license" ]]; then
+            warp update --license "$custom_license" >/dev/null 2>&1
+        else
+            warp generate >/dev/null 2>&1
+        fi
+        if systemctl is-active --quiet warp-proxy; then
+            systemctl restart warp-proxy
+        fi
+        done_something=1
+    fi
+
+    # WARP WireGuard (wgcf) - update credential lalu restart via warp.sh
+    if command -v wgcf &>/dev/null && [ -f "/etc/wireguard/wgcf-account.toml" ]; then
+        echo -e "\n${CYAN}Menerapkan ke WARP WireGuard (wgcf)...${NC}"
+        cd /etc/wireguard || exit
+        if [[ -n "$custom_license" ]]; then
+            sed -i "s/license_key = .*/license_key = '${custom_license}'/g" wgcf-account.toml
+        else
+            sed -i "s/license_key = .*/license_key = ''/g" wgcf-account.toml
+        fi
+        yes | wgcf update >/dev/null 2>&1
+        wgcf generate >/dev/null 2>&1
+
+        WG_PRIV_KEY=$(grep ^PrivateKey wgcf-profile.conf 2>/dev/null | cut -d= -f2- | tr -d ' ')
+        WG_ADDR=$(grep ^Address wgcf-profile.conf 2>/dev/null | cut -d= -f2- | tr -d ' ' | sed ':a;N;s/\n/,/g;ta')
+        WG_PUB_KEY=$(grep ^PublicKey wgcf-profile.conf 2>/dev/null | cut -d= -f2- | tr -d ' ')
+
+        if [ -f "wgcf.conf" ] && [[ -n "$WG_PRIV_KEY" ]]; then
+            sed -i "s|^PrivateKey = .*|PrivateKey = ${WG_PRIV_KEY}|" wgcf.conf
+            sed -i "s|^Address = .*|Address = ${WG_ADDR}|" wgcf.conf
+            sed -i "s|^PublicKey = .*|PublicKey = ${WG_PUB_KEY}|" wgcf.conf
+        fi
+
+        # Restart WireGuard via warp.sh jika sedang aktif
+        if ip link show wgcf &>/dev/null || systemctl is-active --quiet wg-quick@wgcf; then
+            bash <(curl -fsSL git.io/warp.sh) rwg
+        fi
+        done_something=1
+    fi
+
+    if [ $done_something -eq 1 ]; then
+        echo -e "\n${GREEN}License berhasil diperbarui!${NC}"
+    else
+        echo -e "\n${RED}Instal WARP Proxy atau WireGuard terlebih dahulu.${NC}"
+    fi
+    pause
+}
+
+# ==========================================
+# MENU UTAMA
+# ==========================================
+    echo -e ""
+    echo -e "   ${MAGENTA}1.${NC} Masukkan / Ganti License Key (WARP+)"
+    echo -e "   ${BOLD}0.${NC} Keluar (Exit)"
+    echo -e ""
+}
+
+# ==========================================
+# INIT: Pastikan Danted aktif jika
+# WARP Proxy tidak sedang berjalan
+# ==========================================
+init_check() {
+    if ! systemctl is-active --quiet warp-proxy; then
+        if ! systemctl is-active --quiet danted; then
+            systemctl enable danted >/dev/null 2>&1
+            systemctl start danted >/dev/null 2>&1
+        fi
+    fi
+}
+
+check_root
+init_check
+
+while true; do
+    show_menu
+    read -p " Pilih Menu [0-1]: " choice
+    echo ""
+    case $choice in
+        1) change_license ;;
+        0)  clear; echo -e "${GREEN}Terima kasih!${NC}"; exit 0 ;;
+        *)  echo -e "${RED}Pilihan tidak valid!${NC}"; sleep 1 ;;
+    esac
+done
