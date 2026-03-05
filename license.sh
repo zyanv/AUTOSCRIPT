@@ -110,4 +110,5 @@ while true; do
         0)  clear; echo -e "${GREEN}Terima kasih!${NC}"; exit 0 ;;
         *)  echo -e "${RED}Pilihan tidak valid!${NC}"; sleep 1 ;;
     esac
+
 done
