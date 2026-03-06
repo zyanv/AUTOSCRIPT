@@ -98,7 +98,7 @@ echo -e  "  ${wh}KERNEL VERSION${NC}                   ${cy}:${NC} ${wh}`uname -
 echo -e  "  ${wh}XRAY CORE VERSION${NC}                ${cy}:${NC} ${wh}$xcore${NC}"
 echo -e  "  ${wh}EXP DATE CERT XRAY${NC}               ${cy}:${NC} ${wh}$expxray${NC}"
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC}"
-echo -e  " ${cy}PROTOCOL    ${wh}SSH/OVPN      VLESS            Bandwith Usage${NC}    "
+echo -e  " ${cy}PROTOCOL    ${wh}SSH/OVPN      VLESS          Bandwith Usage${NC}    "
 echo -e  " ${cy}TOTAL USER${NC}    ${cy}[${wh}$usrovpn${cy}]          [${wh}$usrvl${cy}]    [${wh}$ttoday${cy}] [${wh}$tyest${cy}] [${wh}$tmon${cy}]"
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC}"
 echo -e  " \033[30;5;47m                         ⇱ SSHWS/OVPN MENU ⇲                     \033[m"
