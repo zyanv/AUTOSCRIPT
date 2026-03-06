@@ -5,6 +5,9 @@ websc=https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main
 
 #delete file
 rm -f /usr/local/bin/menu
+rm -f /usr/local/bin/mray
+rm -f /usr/local/bin/mssh
+
 # download script
 cd /usr/local/bin
 wget -O menu "${websc}/SCRIPT/FILE/menu.sh" && chmod +x menu
