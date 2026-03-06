@@ -625,6 +625,8 @@ wget -O delexp "${websc}/SCRIPT/FILE/delexp.sh"
 wget -O vless-list "${websc}/SCRIPT/FILE/vless-list.sh"
 wget -O user-vless "${websc}/SCRIPT/FILE/user-vless.sh"
 wget -O kemaskini "${websc}/SCRIPT/FILE/kemaskini.sh"
+wget -O mssh "${websc}/SCRIPT/FILE/mssh.sh"
+wget -O mray "${websc}/SCRIPT/FILE/mray.sh"
 
 chmod +x add-xvless
 chmod +x del-xvless
@@ -636,6 +638,8 @@ chmod +x delexp
 chmod +x vless-list
 chmod +x user-vless
 chmod +x kemaskini
+chmod +x mssh
+chmod +x mray
 
 cd
 rm -f install-xray.sh
