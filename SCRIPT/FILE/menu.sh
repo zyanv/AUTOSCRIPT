@@ -103,27 +103,17 @@ echo -e  " ${cy}TOTAL USER${NC}    ${cy}[${wh}$usrovpn${cy}]          [${wh}$usr
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC}"
 echo -e  " \033[30;5;47m                         ⇱ SSHWS/OVPN MENU ⇲                     \033[m"
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e  " ${wh}[ 01 ]${NC} ${cy}CREATE NEW USER${NC}            ${wh}[ 06 ]${NC} ${cy}LIST USER INFORMATION${NC}"
-echo -e  " ${wh}[ 02 ]${NC} ${cy}CREATE TRIAL USER${NC}          ${wh}[ 07 ]${NC} ${cy}SET AUTO KILL LOGIN${NC}"
-echo -e  " ${wh}[ 03 ]${NC} ${cy}EXTEND ACCOUNT ACTIVE${NC}      ${wh}[ 08 ]${NC} ${cy}DISPLAY USER MULTILOGIN${NC}"
-echo -e  " ${wh}[ 04 ]${NC} ${cy}DELETE ACTIVE USER${NC}         ${wh}[ 09 ]${NC} ${cy}INSTALL SSHWS${NC}"
-echo -e  " ${wh}[ 05 ]${NC} ${cy}CHECK USER LOGIN${NC}"
-echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e  " \033[30;5;47m                         ⇱ XRAY MENU ⇲                           \033[m"       
-echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} " 
-echo -e  " ${wh}[ 10 ]${NC} ${cy}CREATE NEW USER${NC}            ${wh}[ 14 ]${NC}"" ${cy}CHECK USER LOGIN${NC}"
-echo -e  " ${wh}[ 11 ]${NC} ${cy}CREATE TRIAL USER${NC}          ${wh}[ 15 ]${NC}"" ${cy}LIST USER${NC}"
-echo -e  " ${wh}[ 12 ]${NC} ${cy}EXTEND ACCOUNT ACTIVE${NC}      ${wh}[ 16 ]${NC}"" ${cy}RENEW XRAY CERTIFICATION${NC}"
-echo -e  " ${wh}[ 13 ]${NC} ${cy}DELETE ACTIVE USER${NC}"
+echo -e  " ${wh}[ 01 ]${NC} ${cy}MENU SSH${NC}            ${wh}[ 02 ]${NC} ${cy}MENU XRAY VLESS${NC}"
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e  " \033[30;5;47m                         ⇱ SYSTEM MENU ⇲                         \033[m"      
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e  " ${wh}[ 17 ]${NC} ${cy}ADD/CHANGE DOMAIN VPS${NC}      ${wh}[ 23 ]${NC} ${cy}SPEEDTEST VPS${NC}"
-echo -e  " ${wh}[ 18 ]${NC} ${cy}CHANGE DNS SERVER${NC}          ${wh}[ 24 ]${NC} ${cy}CHECK STREAM GEO LOCATION${NC}"
-echo -e  " ${wh}[ 19 ]${NC} ${cy}RESTART ALL SERVICE${NC}        ${wh}[ 25 ]${NC} ${cy}DISPLAY SYSTEM INFORMATION${NC}"
-echo -e  " ${wh}[ 20 ]${NC} ${cy}CHECK BANDWITH${NC}             ${wh}[ 26 ]${NC} ${cy}SERVICE STATUS${NC}"
-echo -e  " ${wh}[ 21 ]${NC} ${cy}MENU AUTO REBOOT${NC}           ${wh}[ 27 ]${NC} ${cy}SOCKS WRAP${NC}" 
-echo -e  " ${wh}[ 22 ]${NC} ${cy}WARP CLOUDFLARE${NC}            ${wh}[ 28 ]${NC} ${cy}CHANGE XRAY CORE${NC}" 
+echo -e  " ${wh}[ 03 ]${NC} ${cy}ADD/CHANGE DOMAIN VPS${NC}      ${wh}[ 10 ]${NC} ${cy}SPEEDTEST VPS${NC}"
+echo -e  " ${wh}[ 04 ]${NC} ${cy}CHANGE DNS SERVER${NC}          ${wh}[ 11 ]${NC} ${cy}CHECK STREAM GEO LOCATION${NC}"
+echo -e  " ${wh}[ 05 ]${NC} ${cy}RESTART ALL SERVICE${NC}        ${wh}[ 12 ]${NC} ${cy}DISPLAY SYSTEM INFORMATION${NC}"
+echo -e  " ${wh}[ 06 ]${NC} ${cy}CHECK BANDWITH${NC}             ${wh}[ 13 ]${NC} ${cy}SERVICE STATUS${NC}"
+echo -e  " ${wh}[ 07 ]${NC} ${cy}MENU AUTO REBOOT${NC}           ${wh}[ 14 ]${NC} ${cy}SOCKS WRAP${NC}" 
+echo -e  " ${wh}[ 08 ]${NC} ${cy}WARP CLOUDFLARE${NC}            ${wh}[ 15 ]${NC} ${cy}CHANGE XRAY CORE${NC}" 
+echo -e  " ${wh}[ 09 ]${NC} ${cy}UPDATE SCRIPT${NC}"
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC}" 
 echo -e  " ${wh}[  0 ]${NC}" "${cy}EXIT MENU${NC}  "
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC}"
@@ -137,87 +127,48 @@ read -p  "     Please select an option : " menu
 echo -e "\e[0m"
  case $menu in
   1)
-  clear ; usernew
+  clear ; mssh
   ;;
   2)
-  clear ; trial 
-  ;;
-  3)
-  clear ; renew
-  ;;
-  4)
-  clear ; hapus
-  ;;
-  5)
-  clear ; cek
-  ;;
-  6)
-  clear ; member
-  ;;
-  7)
-  clear ; autokill
-  ;;
-  8)
-  clear ; ceklim
-  ;;
-  9)
-  clear ; ./install_ws_http.sh install
-  ;;
-  10)
-  clear ; add-xvless
-  ;;
-  11)
-  clear ; trial-xvless
-  ;;
-  12)
-  clear ; renew-xvless
-  ;;
-  13)
-  clear ; del-xvless
-  ;; 
-  14)
-  clear ; cek-xvless
-  ;;
-  15)
-  clear ; vless-list
-  ;;
-  16)
-  clear ; recert-xray
+  clear ; mray
   ;;    
-  17)
+  3)
   clear ; add-host
   ;;
-  18)
+  4)
   clear ; mdns
   ;;
-  19)
+  5)
   clear ; restart-service
   ;;
-  20)
+  6)
   clear ; vnstat
   ;;
-  21)
+  7)
   clear ; autoreboot
   ;;
-  22)
+  8)
   clear ; cf
   ;;
-  23)
+  9)
+  clear ; kemaskini
+  ;;
+  10)
   clear ; speedtest
   ;;
-  24)
+  11)
   clear ; nf
   ;;
-  25)
+  12)
   clear ; info
   ;;
-  26)
+  13)
   clear ; status
   ;;
-  27)
+  14)
   clear ; mwarp
   ;;
-  28)
+  15)
   clear ; xcorechanger
   ;;
   0)
