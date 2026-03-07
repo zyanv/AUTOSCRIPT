@@ -628,7 +628,7 @@ wget -O kemaskini "${websc}/SCRIPT/FILE/kemaskini.sh"
 wget -O mssh "${websc}/SCRIPT/FILE/mssh.sh"
 wget -O mray "${websc}/SCRIPT/FILE/mray.sh"
 wget -O wcf "${websc}/SCRIPT/FILE/wcf.sh"
-wget -O menu-tweak "${websc}/SCRIPT/FILE/menu-tweak.sh"
+wget -O ip6menu "${websc}/SCRIPT/FILE/ip6menu.sh"
 
 chmod +x add-xvless
 chmod +x del-xvless
@@ -643,7 +643,7 @@ chmod +x kemaskini
 chmod +x mssh
 chmod +x mray
 chmod +x wcf
-chmod +x menu-tweak
+chmod +x ip6menu
 
 cd
 rm -f install-xray.sh
