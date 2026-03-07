@@ -44,7 +44,7 @@ echo -e "\e[0m"
   clear ; recert-xray
   ;;
   8)
-  clear ; menu-tweak
+  clear ; ip6menu
   ;;
   *)
   echo -e "ERROR!! Please Enter an Correct Number"
