@@ -1,9 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# File Location
-REPO="https://raw.githubusercontent.com/zyanv/WARP/main/"
-websc=https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main
-# Clear ui
+# install basic package
+#apt install resolvconf -y 
+
+# install clouflare JQ
+#apt install jq curl -y
+
+# reload wg
+#cat << 'EOF' > /root/restart_wg
+#!/bin/sh
+#bash warp2 wgd
+
+#EOF
+
+#sleep 1
+#clear
+
+#chmod +x /root/restart_wg
+# reload wg 0630 am
+#echo "#30 6 * * * root /root/restart_wg" >> /etc/crontab
 clear
 
 # download menu
