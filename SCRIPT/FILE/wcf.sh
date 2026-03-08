@@ -14,3 +14,5 @@ wget -O warp2 "${REPO}warp.sh"
 # subcommand
 chmod +x warp
 chmod +x warp2
+
+warp
