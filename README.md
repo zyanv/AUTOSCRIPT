@@ -64,7 +64,7 @@ wget -q https://github.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/indonesia && chmod 
 
 ### get root access to your vps
 ``````
-  wget -qO- -O aksesroot.sh https://github.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/aksesroot.sh && bash aksesroot.sh
+  wget -qO- -O accesroot.sh https://github.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/accesroot.sh && bash accesroot.sh
 ```````
 ========================================================================================================================================================================================
 # BONUS : 
