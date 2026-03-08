@@ -263,7 +263,7 @@ while true; do
   echo -e "${BB}--------------------------------------------------------${NC}"
   echo -e "                ${WB}  Server Information "
   echo -e "${BB}--------------------------------------------------------${NC}"
-  echo -e "  ${YB}OS      :${NC} $(lsb_release -ds)"
+  echo -e "  ${YB}OS      :${NC} `hostnamectl | grep "Operating System" | cut -d ' ' -f5-`"
   echo -e "  ${YB}KERNEL  :${NC} $(uname -r 2>/dev/null)"
   echo -e "  ${YB}UPTIME  :${NC} $uptime"
   echo -e "  ${YB}DATE    :${NC} $(date 2>/dev/null)"
