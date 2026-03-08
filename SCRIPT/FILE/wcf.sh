@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # File Location
-file="https://raw.githubusercontent.com/FN-Rerechan02/warp-cloudflare/refs/heads/main/"
-
+REPO="https://raw.githubusercontent.com/zyanv/WARP/main/"
+websc=https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main
 # Clear ui
 clear
 
 # download menu
 cd /usr/sbin
-wget -O warp "${file}menu.sh"
-wget -O warp2 "${file}warp.sh"
+wget -O warp "${websc}/SCRIPT/FILE/mwcf.sh"
+wget -O warp2 "${REPO}warp.sh"
 
 # subcommand
 chmod +x warp
