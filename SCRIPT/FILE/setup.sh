@@ -109,12 +109,41 @@ wget ${websc}/SCRIPT/FILE/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 sleep 2
 clear
 
-#install ssh ws
+#install dropbear
 echo -e "============================================="
-echo -e " ${green} INSTALLING SSH WS  ${NC}"
+echo -e " ${green} INSTALLING DROPBEAR  ${NC}"
 echo -e "============================================="
 sleep 2
-wget ${websc}/SCRIPT/SSHWS/install_ws_http.sh && chmod +x install_ws_http.sh  
+# Install Dropbear
+apt install dropbear -y
+bash <(curl -s https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/dropbear.sh)
+rm -f /etc/dropbear/dropbear_rsa_host_key
+dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key
+rm -f /etc/dropbear/dropbear_dss_host_key
+dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key
+rm -f /etc/dropbear/dropbear_ecdsa_host_key
+dropbearkey -t ecdsa -f /etc/dropbear/dropbear_ecdsa_host_key
+cd /etc/default
+rm -f dropbear
+wget -qO dropbear "https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/dropbear.conf"
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+echo -e "Dev @Rerechan02" > /etc/issue.net
+clear
+systemctl daemon-reload
+/etc/init.d/dropbear restart
+clear
+cd /root
+rm -fr dropbear*
+sleep 2
+clear
+
+#install xcore changer
+echo -e "============================================="
+echo -e " ${green} INSTALLING XRAY CHANGER  ${NC}"
+echo -e "============================================="
+sleep 2
+wget -q -O /usr/bin/xcorechanger "https://raw.githubusercontent.com/NiL070/XrayCoreChanger/main/xcorechanger.sh" && chmod +x /usr/bin/xcorechanger
 sleep 2
 clear
 
@@ -159,42 +188,6 @@ clear
 echo -e " ${red}RESOLVE INSTALL DONE ${NC}"
 sleep 2
 clear
-
-# Create the directory for iptables rules if it doesn't exist
-mkdir -p /etc/iptables
-
-# Flush existing iptables rules
-iptables -F
-iptables -X
-
-# Open essential ports
-iptables -I INPUT -p tcp --dport 22 -j ACCEPT
-iptables -I INPUT -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -p tcp --dport 443 -j ACCEPT
-iptables -I INPUT -p tcp --dport 8880 -j ACCEPT
-iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
-
-# Save iptables rules
-mkdir -p /etc/iptables
-iptables-save > /etc/iptables/rules.v4
-
-# Create a systemd service file to load iptables rules at boot
-cat <<EOT > /etc/systemd/system/iptables-restore.service
-[Unit]
-Description=Restore iptables firewall rules
-Before=network-pre.target
-Wants=network-pre.target
-DefaultDependencies=no
-
-[Service]
-Type=oneshot
-ExecStart=/sbin/iptables-restore < /etc/iptables/rules.v4
-ExecReload=/sbin/iptables-restore < /etc/iptables/rules.v4
-RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target
-EOT
 
 # // Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
