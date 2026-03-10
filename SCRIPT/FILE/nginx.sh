@@ -10,13 +10,13 @@ apt update && apt install -y curl gnupg2 ca-certificates lsb-release debian-arch
 
 # Step 2: Tambahkan GPG key dari NGINX
 echo -e "\e[36m[2/5] Menambahkan GPG key resmi NGINX...\e[0m"
-curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
+curl -fsSL https://nginx.org/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
 
 # Step 3: Tambahkan repository NGINX resmi (stable)
 DISTRO_ID=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
 DISTRO_CODENAME=$(lsb_release -cs)
 echo -e "\e[36m[3/5] Menambahkan repository nginx.org untuk $DISTRO_ID $DISTRO_CODENAME...\e[0m"
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/${DISTRO_ID} ${DISTRO_CODENAME} nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/${DISTRO_ID} ${DISTRO_CODENAME} nginx" | tee /etc/apt/sources.list.d/nginx.list
 
 # Step 4: Hapus nginx versi distro jika sudah ada
 echo -e "\e[36m[4/5] Menghapus nginx versi lama (jika ada)...\e[0m"
