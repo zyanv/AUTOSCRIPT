@@ -109,6 +109,15 @@ wget ${websc}/SCRIPT/FILE/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 sleep 2
 clear
 
+#install ssh ws
+echo -e "============================================="
+echo -e " ${green} INSTALLING SSH WS  ${NC}"
+echo -e "============================================="
+sleep 2
+wget ${websc}/SCRIPT/SSHWS/install_ws_http.sh && chmod +x install_ws_http.sh  
+sleep 2
+clear
+
 #install dropbear
 echo -e "============================================="
 echo -e " ${green} INSTALLING DROPBEAR  ${NC}"
@@ -138,7 +147,6 @@ rm -fr dropbear*
 sleep 2
 clear
 
-
 #install udp custom
 echo -e "============================================="
 echo -e " ${green} INSTALLING UDP CUSTOM  ${NC}"
@@ -146,15 +154,6 @@ echo -e "============================================="
 sleep 2
 # Setup UDP Custom
 bash <(curl -s https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/udp.sh)
-sleep 2
-clear
-
-#install xcore changer
-echo -e "============================================="
-echo -e " ${green} INSTALLING XRAY CHANGER  ${NC}"
-echo -e "============================================="
-sleep 2
-wget -q -O /usr/bin/xcorechanger "https://raw.githubusercontent.com/NiL070/XrayCoreChanger/main/xcorechanger.sh" && chmod +x /usr/bin/xcorechanger
 sleep 2
 clear
 
