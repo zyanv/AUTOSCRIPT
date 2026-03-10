@@ -162,6 +162,7 @@ echo -e "============================================="
 echo -e " ${green} INSTALLING NGINX  ${NC}"
 echo -e "============================================="
 sleep 2
+apt install sudo -y
 bash <(curl -s https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/nginx.sh)
 sleep 2
 clear
