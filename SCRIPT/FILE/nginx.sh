@@ -10,7 +10,7 @@ apt update && apt install -y curl gnupg2 ca-certificates lsb-release debian-arch
 
 # Step 2: Tambahkan GPG key dari NGINX
 echo -e "\e[36m[2/5] Menambahkan GPG key resmi NGINX...\e[0m"
-curl -fsSL https://nginx.org/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
+curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
 
 # Step 3: Tambahkan repository NGINX resmi (stable)
 DISTRO_ID=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
