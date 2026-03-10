@@ -144,6 +144,10 @@ clear
 #wget git.io/warp.sh
 #clear
 
+# Additional ports for various services
+iptables -I INPUT -p tcp --dport 8880 -j ACCEPT
+iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+
 #install resolv
 echo -e "============================================="
 echo -e " ${green} INSTALLING RESOLVCONF${NC} "
