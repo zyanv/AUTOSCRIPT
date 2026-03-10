@@ -138,6 +138,17 @@ rm -fr dropbear*
 sleep 2
 clear
 
+
+#install udp custom
+echo -e "============================================="
+echo -e " ${green} INSTALLING UDP CUSTOM  ${NC}"
+echo -e "============================================="
+sleep 2
+# Setup UDP Custom
+bash <(curl -s https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main/SCRIPT/FILE/udp.sh)
+sleep 2
+clear
+
 #install xcore changer
 echo -e "============================================="
 echo -e " ${green} INSTALLING XRAY CHANGER  ${NC}"
