@@ -392,6 +392,68 @@ install_wg_tools_debian10() {
   pause
 }
 
+# ==========================================
+# WARP License
+# ==========================================
+change_license() {
+    clear
+    echo -e "${CYAN}=== GANTI CUSTOM LICENSE (WARP+) ===${NC}"
+    read -p "License Key (Kosongkan lalu Enter untuk kembali ke Gratis): " custom_license
+
+    local done_something=0
+
+    # WARP Proxy (shahradelahi) - via warp binary
+    if command -v warp &>/dev/null; then
+        echo -e "\n${CYAN}Menerapkan ke WARP Proxy Service...${NC}"
+        if [[ -n "$custom_license" ]]; then
+            warp update --license "$custom_license" >/dev/null 2>&1
+        else
+            warp generate >/dev/null 2>&1
+        fi
+        if systemctl is-active --quiet warp-proxy; then
+            systemctl restart warp-proxy
+        fi
+        done_something=1
+    fi
+
+    # WARP WireGuard (wgcf) - update credential lalu restart via warp.sh
+    if command -v wgcf &>/dev/null && [ -f "/etc/wireguard/wgcf-account.toml" ]; then
+        echo -e "\n${CYAN}Menerapkan ke WARP WireGuard (wgcf)...${NC}"
+        cd /etc/wireguard || exit
+        if [[ -n "$custom_license" ]]; then
+            sed -i "s/license_key = .*/license_key = '${custom_license}'/g" wgcf-account.toml
+        else
+            sed -i "s/license_key = .*/license_key = ''/g" wgcf-account.toml
+        fi
+        yes | wgcf update >/dev/null 2>&1
+        wgcf generate >/dev/null 2>&1
+
+        WG_PRIV_KEY=$(grep ^PrivateKey wgcf-profile.conf 2>/dev/null | cut -d= -f2- | tr -d ' ')
+        WG_ADDR=$(grep ^Address wgcf-profile.conf 2>/dev/null | cut -d= -f2- | tr -d ' ' | sed ':a;N;s/\n/,/g;ta')
+        WG_PUB_KEY=$(grep ^PublicKey wgcf-profile.conf 2>/dev/null | cut -d= -f2- | tr -d ' ')
+
+        if [ -f "wgcf.conf" ] && [[ -n "$WG_PRIV_KEY" ]]; then
+            sed -i "s|^PrivateKey = .*|PrivateKey = ${WG_PRIV_KEY}|" wgcf.conf
+            sed -i "s|^Address = .*|Address = ${WG_ADDR}|" wgcf.conf
+            sed -i "s|^PublicKey = .*|PublicKey = ${WG_PUB_KEY}|" wgcf.conf
+        fi
+
+        # Restart WireGuard via warp.sh jika sedang aktif
+        if ip link show wgcf &>/dev/null || systemctl is-active --quiet wg-quick@wgcf; then
+            bash <(curl -fsSL git.io/warp.sh) rwg
+        fi
+        done_something=1
+    fi
+
+    if [ $done_something -eq 1 ]; then
+        echo -e "\n${GREEN}License berhasil diperbarui!${NC}"
+    else
+        echo -e "\n${RED}Instal WARP Proxy atau WireGuard terlebih dahulu.${NC}"
+    fi
+    pause
+}
+
+
 # ============================================================
 # STATUS (detect iface + mode + cache)
 # ============================================================
@@ -524,7 +586,7 @@ while true; do
   menu_row_2col "5"  "Disable SOCKS5 Proxy"            "14" "Version information"
   menu_row_2col "6"  "Install WireGuard tools"         "15" "Help information"
   box_mid
-  menu_row_2col "7"  "WARP IPv4 (wgcf4)"               "16" "Reboot VPS"
+  menu_row_2col "7"  "WARP IPv4 (wgcf4)"               "16" "Change License"
   menu_row_2col "8"  "WARP IPv6 (wgcf6)"               "17" "Fix Debian10 wg/wg-quick"
   menu_row_2col "9"  "WARP Dual (wgcfd)"               "0"  "Exit"
   box_bottom
@@ -548,7 +610,7 @@ while true; do
     13) clear; bash warp2 status;    pause ;;
     14) clear; bash warp2 version;   pause ;;
     15) clear; bash warp2 help;      pause ;;
-    16) clear; reboot ;;
+    16) clear; change_license ;;
     17) install_wg_tools_debian10 ;;
     0|q|Q|exit|EXIT) clear; exit 0 ;;
     *)  clear; echo -e "${RED}${BOLD}Invalid option!${RST}"; pause ;;
