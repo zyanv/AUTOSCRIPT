@@ -6,7 +6,6 @@ GREEN='\033[0;32m'
 domain=$(cat /etc/xray/domain)
 websc=https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main
 
-apt install python3 -y
 apt install cron bash-completion ntpdate -y
 ntpdate pool.ntp.org
 apt -y install chrony
