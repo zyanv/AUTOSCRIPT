@@ -611,8 +611,6 @@ systemctl enable xray@xhttp
 systemctl start xray@xhttp
 systemctl restart xray@xhttp
 
-
-
 cd /usr/local/bin
 wget -O add-xvless "${websc}/SCRIPT/FILE/add-xvless.sh"
 wget -O del-xvless "${websc}/SCRIPT/FILE/del-xvless.sh"
@@ -644,7 +642,6 @@ chmod +x mray
 chmod +x wcf
 chmod +x ip6menu
 
-cd
 rm -f install-xray.sh
 rm -f /root/domain
 clear
