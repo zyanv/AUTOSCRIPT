@@ -4,7 +4,7 @@ NC='\033[0m'
 GREEN='\033[0;32m'
 # V2Ray Mini Core Version 4.42.2
 domain=$(cat /etc/xray/domain)
-websc=https://raw.githubusercontent.com/JinGGoVPN/DATA/main
+websc=https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main
 
 apt install python3 -y
 apt install cron bash-completion ntpdate -y
