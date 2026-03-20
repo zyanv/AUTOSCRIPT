@@ -14,6 +14,7 @@ NC='\e[0m'
 
 apt -y update 
 apt install -y bzip2 gzip coreutils screen curl
+apt install python
 sleep 2
 clear
 
