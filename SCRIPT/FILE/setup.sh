@@ -146,7 +146,7 @@ echo -e "============================================="
 echo -e " ${green} INSTALLING XRAY${NC} "
 echo -e "============================================="
 sleep 2
-wget ${websc}/SCRIPT/FILE/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
+wget ${websc}/SCRIPT/FILE/install.sh && chmod +x install.sh && ./install.sh
 sleep 2
 clear
 
@@ -175,7 +175,7 @@ sleep 2
 clear
 
 rm -f /root/ssh-vpn.sh
-rm -f /root/install-xray.sh
+rm -f /root/install.sh
 rm -f /root/websocket.sh
 
 clear
