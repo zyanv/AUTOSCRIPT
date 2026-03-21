@@ -1,8 +1,9 @@
 #!/bin/bash
+
 RED='\033[0;31m'
 NC='\033[0m'
 GREEN='\033[0;32m'
-# V2Ray Mini Core Version 4.42.2
+
 domain=$(cat /etc/xray/domain)
 websc=https://raw.githubusercontent.com/zyanv/AUTOSCRIPT/main
 
@@ -635,7 +636,7 @@ chmod +x mray
 chmod +x wcf
 chmod +x ip6menu
 
-rm -f install.sh
+rm -f install-xray.sh
 rm -f /root/domain
 clear
 echo -e " ${RED}XRAY INSTALL DONE ${NC}"
