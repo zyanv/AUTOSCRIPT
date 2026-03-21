@@ -17,30 +17,23 @@ chronyc sourcestats -v
 chronyc tracking -v
 date
 
-#Ambil Xray Core Version Terbaru
+# / / Ambil Xray Core Version Terbaru
 latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 
-#Installation Xray Core
+# / / Installation Xray Core
 xraycore_link="${websc}/SCRIPT/XRAY/v25.10.15.3/xray.linux.zip"
 
-#Make Main Directory
+# / /Make Main Directory
 mkdir -p /usr/bin/xray
 
-#Make Main Directory
-mkdir -p /usr/local/etc/xray/
-touch /usr/local/etc/xray/vless.txt
-
-# Generate certificates
-#systemctl stop nginx
+# / /Generate certificates
 mkdir /root/.acme.sh
 curl https://acme-install.netlify.app/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 ~/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /usr/local/etc/xray/xray.crt --keypath /usr/local/etc/xray/xray.key --ecc
-#service squid start
 cd
-#systemctl restart nginx
 sleep 1
 clear
 
@@ -642,7 +635,7 @@ chmod +x mray
 chmod +x wcf
 chmod +x ip6menu
 
-rm -f install-xray.sh
+rm -f install.sh
 rm -f /root/domain
 clear
 echo -e " ${RED}XRAY INSTALL DONE ${NC}"
