@@ -146,7 +146,7 @@ echo -e "============================================="
 echo -e " ${green} INSTALLING XRAY${NC} "
 echo -e "============================================="
 sleep 2
-wget ${websc}/SCRIPT/FILE/install.sh && chmod +x install.sh && ./install.sh
+wget ${websc}/SCRIPT/FILE/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
 sleep 2
 clear
 
