@@ -8,6 +8,9 @@ cy='\033[0;36m'
 NC='\e[0m'
 clear
 
+# Create necessary directories if they don't exist
+mkdir -p /etc/xray/database/vless
+
 MYIP=$(wget -qO- ipv4.icanhazip.com); 
 echo "Checking VPS" 
 clear
@@ -52,6 +55,15 @@ sed -i '/#vless-xhttp-ntls$/a\### '"$user $exp"'\
 
 echo -e "### $user $exp" $uuid >> /usr/local/etc/xray/vless.txt
 
+# Save account database
+cat > /etc/xray/database/vless/$user.txt <<EOF
+username: $user
+uuid: $uuid
+Bug: $sni
+Path: $wss
+expired: $exp
+EOF
+
 vlesslink1="vless://${uuid}@${dom}:$tls?path=$path/xvless&security=tls&encryption=none&type=ws&sni=$sni#${user}"
 vlesslink2="vless://${uuid}@${dom}:$none?path=$path/xvlessntls&encryption=none&type=ws&host=$sni#${user}"
 vlesslink3="vless://${uuid}@${dom}:$none?path=$path/xvless-hup&encryption=none&type=httpupgrade&host=$sni#${user}"
@@ -68,7 +80,7 @@ systemctl restart xray@xhttp
 clear
 echo -e ""
 echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e "               XRAY VLESS WS & XTLS       " 
+echo -e "                             XRAY VLESS WS & XTLS       " 
 echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "Remarks          : ${user}"
 echo -e "Expired On       : $exp"
@@ -83,32 +95,42 @@ echo -e "path tls         : /xvless"
 echo -e "path ntls        : /xvlessntls"
 echo -e "path httpupgrade : /xvless-hup"
 echo -e "path xhttp       : /xvless-xhttp-ntls"
-echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "LINK VLESS TLS :"
 echo -e ""
 echo -e "${vlesslink1}"
 echo -e ""
-echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "LINK VLESS NTLS : "
 echo -e ""
 echo -e "${vlesslink2}"
 echo -e ""
-echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "LINK VLESS XTLS : "
 echo -e ""
 echo -e "${vless_vision}"
 echo -e ""
-echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e "LINK VLESS GRPC : "
-echo -e ""
-echo -e "${vlessgrpc}"
-echo -e ""
-echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "LINK VLESS HTTPUPGRADE : "
 echo -e ""
 echo -e "${vlesslink3}"
 echo -e ""
-echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS XHTTP : "
+echo -e ""
+echo -e "${vlesslink4}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS STRX : "
+echo -e ""
+echo -e "${vlesslink5}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS XLITE : "
+echo -e ""
+echo -e "${vlesslink6}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "ScriptMod By Zyanv"
 read -n 1 -s -r -p "Press any key to back on menu"
 clear
