@@ -628,6 +628,7 @@ wget -O mssh "${websc}/SCRIPT/FILE/mssh.sh"
 wget -O mray "${websc}/SCRIPT/FILE/mray.sh"
 wget -O wcf "${websc}/SCRIPT/FILE/wcf.sh"
 wget -O ip6menu "${websc}/SCRIPT/FILE/ip6menu.sh"
+wget -O config-vless "${websc}/SCRIPT/FILE/config-vless.sh"
 
 chmod +x add-xvless
 chmod +x del-xvless
@@ -643,6 +644,7 @@ chmod +x mssh
 chmod +x mray
 chmod +x wcf
 chmod +x ip6menu
+chmod +x config-vless
 
 cd
 rm -f install-xray.sh
