@@ -12,10 +12,11 @@ clear
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e  " \033[30;5;47m                         ⇱ XRAY MENU ⇲                           \033[m"       
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} " 
-echo -e  " ${wh}[ 01 ]${NC} ${cy}CREATE NEW USER${NC}            ${wh}[ 05 ]${NC}"" ${cy}CHECK USER LOGIN${NC}"
-echo -e  " ${wh}[ 02 ]${NC} ${cy}CREATE TRIAL USER${NC}          ${wh}[ 06 ]${NC}"" ${cy}LIST USER${NC}"
-echo -e  " ${wh}[ 03 ]${NC} ${cy}EXTEND ACCOUNT ACTIVE${NC}      ${wh}[ 07 ]${NC}"" ${cy}RENEW XRAY CERTIFICATION${NC}"
-echo -e  " ${wh}[ 04 ]${NC} ${cy}DELETE ACTIVE USER${NC}         ${wh}[ 08 ]${NC} ${cy}MENU TWEAK${NC}  "
+echo -e  " ${wh}[ 01 ]${NC} ${cy}CREATE NEW USER${NC}            ${wh}[ 06 ]${NC} ${cy}CHECK USER LOGIN${NC}"
+echo -e  " ${wh}[ 02 ]${NC} ${cy}CREATE TRIAL USER${NC}          ${wh}[ 07 ]${NC} ${cy}LIST USER${NC}"
+echo -e  " ${wh}[ 03 ]${NC} ${cy}EXTEND ACCOUNT ACTIVE${NC}      ${wh}[ 08 ]${NC} ${cy}RENEW XRAY CERTIFICATION${NC}"
+echo -e  " ${wh}[ 04 ]${NC} ${cy}DELETE ACTIVE USER${NC}         ${wh}[ 09 ]${NC} ${cy}IPV4/IPV6${NC}  "
+echo -e  " ${wh}[ 05 ]${NC} ${cy}CHECK CONFIG USER${NC}"
 echo -e  " ${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e  "  "
 echo -e "\e[1;31m"
@@ -33,17 +34,20 @@ echo -e "\e[0m"
   ;;
   4)
   clear ; del-xvless
-  ;; 
+  ;;
   5)
+  clear ; config-vless
+  ;; 
+  6)
   clear ; cek-xvless
   ;;
-  6)
+  7)
   clear ; vless-list
   ;;
-  7)
+  8)
   clear ; recert-xray
   ;;
-  8)
+  9)
   clear ; ip6menu
   ;;
   *)
