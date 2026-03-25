@@ -104,6 +104,14 @@ vlesslink6="vless://${uuid}@bug.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]
 vless_vision="vless://${uuid}@${domain}:$tls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=$sni#${username}"
 vlessgrpc="vless://${uuid}@${domain}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vlgrpc&sni=$sni#${username}"
 
+# Generate links Tricks
+YesDigiTone="vless://${uuid}@104.20.44.247:$none?path=/xvless-hup&encryption=none&type=httpupgrade&host=speedtest.net.${domain}#${username}"
+YesDigiTone1="vless://${uuid}@172.66.169.187:$none?path=/xvless-hup&encryption=none&type=httpupgrade&host=speedtest.net.${domain}#${username}"
+Celcom="vless://${uuid}@nga.celcomdigi.com.${domain}:$none?path=/xvless-hup&encryption=none&type=httpupgrade&host=nga.celcomdigi.com#${username}"
+Celcom1="vless://${uuid}@celcom.${domain}:$none?path=/xvlessntls&encryption=none&type=ws&host=#${username}"
+Umobilestrx="vless://${uuid}@cdn.opensignal.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: [host][crlf][crlf][split]CF-RAY / HTTP/1.1[crlf]Host: ${domain}[crlf]Upgrade: websocket[crlf][crlf]&encryption=none&type=ws&host=strx-payload://u.com.my/#${username}"
+UmobileXlite="vless://${uuid}@cdn.opensignal.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: [host][crlf][crlf][split]CF-RAY / HTTP/1.1[crlf]Host: ${domain}[crlf]Upgrade: websocket[crlf][crlf]&encryption=none&type=ws&host=u.com.my#${username}"
+
 # Clear screen and display account details
 clear
 echo -e ""
