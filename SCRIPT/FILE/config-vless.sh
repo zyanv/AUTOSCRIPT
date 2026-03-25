@@ -108,7 +108,7 @@ vlessgrpc="vless://${uuid}@${domain}:$tls?mode=gun&security=tls&encryption=none&
 clear
 echo -e ""
 echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e "                             XRAY VLESS WS & XTLS       " 
+echo -e "                         XRAY VLESS WS & XTLS       " 
 echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "Remarks          : ${username}"
 echo -e "Expired On       : ${expired}"
