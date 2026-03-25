@@ -49,7 +49,6 @@ sed -i '/#xray-vless-nontls$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/none.json
 sed -i '/#xray-vless-hup$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/none.json
-/local/etc/xray/xhttp.json
 sed -i '/#vless-xhttp-ntls$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/xhttp.json
 
