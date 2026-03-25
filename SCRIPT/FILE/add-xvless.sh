@@ -1,12 +1,5 @@
 #!/bin/bash
 clear
-red='\e[1;31m'
-gr='\e[0;32m'
-blue='\e[0;34m'
-bb='\e[0;94m'
-cy='\033[0;36m'
-NC='\e[0m'
-clear
 
 # Create necessary directories if they don't exist
 mkdir -p /etc/xray/database/vless
