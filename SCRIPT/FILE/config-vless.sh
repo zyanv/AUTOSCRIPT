@@ -3,8 +3,14 @@
 # VIEW VLESS ACCOUNT DETAILS
 # ========================================================
 
+MYIP=$(wget -qO- ipv4.icanhazip.com); 
+echo "Checking VPS" 
+clear
+
 clear
 domain=$(cat /etc/xray/domain)
+tls="$(cat ~/log-install.txt | grep -w "XRAY VLESS WS TLS" | cut -d: -f2|sed 's/ //g')"
+none="$(cat ~/log-install.txt | grep -w "XRAY VLESS WS NON TLS" | cut -d: -f2|sed 's/ //g')"
 
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m"
 echo -e "\e[0;41;36m              VIEW VLESS ACCOUNT DETAILS                  \e[0m"
