@@ -95,14 +95,14 @@ wss=$(grep "^wss:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
 expired=$(grep "^expired:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
 
 # Generate links
-vlesslink1="vless://${uuid}@${dom}:$tls?path=$path/xvless&security=tls&encryption=none&type=ws&sni=$sni#${username}"
-vlesslink2="vless://${uuid}@${dom}:$none?path=$path/xvlessntls&encryption=none&type=ws&host=$sni#${username}"
-vlesslink3="vless://${uuid}@${dom}:$none?path=$path/xvless-hup&encryption=none&type=httpupgrade&host=$sni#${username}"
-vlesslink4="vless://${uuid}@${dom}:8080?mode=auto&path=$path/xvless-xhttp-ntls&encryption=none&type=xhttp&host=bug.com#${username}"
+vlesslink1="vless://${uuid}@${domain}:$tls?path=$path/xvless&security=tls&encryption=none&type=ws&sni=$sni#${username}"
+vlesslink2="vless://${uuid}@${domain}:$none?path=$path/xvlessntls&encryption=none&type=ws&host=$sni#${username}"
+vlesslink3="vless://${uuid}@${domain}:$none?path=$path/xvless-hup&encryption=none&type=httpupgrade&host=$sni#${username}"
+vlesslink4="vless://${uuid}@${domain}:8080?mode=auto&path=$path/xvless-xhttp-ntls&encryption=none&type=xhttp&host=bug.com#${username}"
 vlesslink5="vless://${uuid}@bug.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: [host][crlf][crlf][split]CF-RAY / HTTP/1.1[crlf]Host: ${domain}[crlf]Upgrade: websocket[crlf][crlf]&encryption=none&type=ws&host=strx-payload://bug.com/#${username}"
 vlesslink6="vless://${uuid}@bug.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: [host][crlf][crlf][split]CF-RAY / HTTP/1.1[crlf]Host: ${domain}[crlf]Upgrade: websocket[crlf][crlf]&encryption=none&type=ws&host=bug.com#${username}"
-vless_vision="vless://${uuid}@${dom}:$tls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=$sni#${username}"
-vlessgrpc="vless://${uuid}@${dom}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vlgrpc&sni=$sni#${username}"
+vless_vision="vless://${uuid}@${domain}:$tls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=$sni#${username}"
+vlessgrpc="vless://${uuid}@${domain}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vlgrpc&sni=$sni#${username}"
 
 # Clear screen and display account details
 clear
@@ -118,7 +118,7 @@ echo -e "port TLS         : $tls"
 echo -e "port none TLS    : $none"
 echo -e "id               : ${uuid}"
 echo -e "Encryption       : none"
-echo -e "network          : ws"
+echo -e "network          : WEBSOCKET, XHTTP, HTTP UPGRADE"
 echo -e "path tls         : /xvless"
 echo -e "path ntls        : /xvlessntls"
 echo -e "path httpupgrade : /xvless-hup"
