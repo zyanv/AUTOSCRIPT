@@ -59,8 +59,8 @@ echo -e "### $user $exp" $uuid >> /usr/local/etc/xray/vless.txt
 cat > /etc/xray/database/vless/$user.txt <<EOF
 username: $user
 uuid: $uuid
-Bug: $sni
-Path: $wss
+sni: $sni
+wss: $wss
 expired: $exp
 EOF
 
