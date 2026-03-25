@@ -13,12 +13,12 @@ tls="$(cat ~/log-install.txt | grep -w "XRAY VLESS WS TLS" | cut -d: -f2|sed 's/
 none="$(cat ~/log-install.txt | grep -w "XRAY VLESS WS NON TLS" | cut -d: -f2|sed 's/ //g')"
 
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m"
-echo -e "\e[0;41;36m              VIEW VLESS ACCOUNT DETAILS                  \e[0m"
+echo -e "\e[0;41;36m              VIEW VLESS ACCOUNT DETAILS                   \e[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m"
 
 # Display all users with expiration info
 echo -e "Username\t\tExpired Date\t\tDays Remaining"
-echo -e "────────────────────────────────────────────────────────────────"
+echo -e "──────────────────────────────────────────────────────────────"
 
 # Check if database directory exists
 if [[ ! -d "/etc/xray/database/vless" ]]; then
