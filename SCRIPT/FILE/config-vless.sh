@@ -84,57 +84,76 @@ fi
 # Read account details from database
 username=$(grep "^username:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
 uuid=$(grep "^uuid:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
-limit_ip=$(grep "^limit_ip:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
-quota=$(grep "^quota:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
+sni=$(grep "^sni:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
+wss=$(grep "^wss:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
 expired=$(grep "^expired:" "/etc/xray/database/vless/${view_user}.txt" | cut -d' ' -f2-)
 
-# Format display values
-if [[ "$limit_ip" == "0" ]]; then
-    iplimit_display="Unlimited"
-else
-    iplimit_display="$limit_ip"
-fi
-
-if [[ "$quota" == "0" ]]; then
-    quota_display="Unlimited"
-else
-    quota_display="${quota} GB"
-fi
-
 # Generate links
-vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws&host=${domain}&sni=${domain}#${username}"
-vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws&host=${domain}#${username}"
+vlesslink1="vless://${uuid}@${dom}:$tls?path=$path/xvless&security=tls&encryption=none&type=ws&sni=$sni#${user}"
+vlesslink2="vless://${uuid}@${dom}:$none?path=$path/xvlessntls&encryption=none&type=ws&host=$sni#${user}"
+vlesslink3="vless://${uuid}@${dom}:$none?path=$path/xvless-hup&encryption=none&type=httpupgrade&host=$sni#${user}"
+vlesslink4="vless://${uuid}@${dom}:8080?mode=auto&path=$path/xvless-xhttp-ntls&encryption=none&type=xhttp&host=bug.com#${user}"
+vlesslink5="vless://${uuid}@bug.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: [host][crlf][crlf][split]CF-RAY / HTTP/1.1[crlf]Host: ${domain}[crlf]Upgrade: websocket[crlf][crlf]&encryption=none&type=ws&host=strx-payload://bug.com/#${user}"
+vlesslink6="vless://${uuid}@bug.com:$none?path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: [host][crlf][crlf][split]CF-RAY / HTTP/1.1[crlf]Host: ${domain}[crlf]Upgrade: websocket[crlf][crlf]&encryption=none&type=ws&host=bug.com#${user}"
+vless_vision="vless://${uuid}@${dom}:$tls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=$sni#${user}"
+vlessgrpc="vless://${uuid}@${dom}:$tls?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vlgrpc&sni=$sni#${user}"
 
 # Clear screen and display account details
 clear
-echo -e "
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-\e[0;41;36m                 VLESS ACCOUNT DETAILS                    \e[0m
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-Hostname    : ${domain}
-Username    : ${username}
-Expired     : ${expired}
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-   ACCOUNT INFORMATION
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-UUID/Key    : $uuid
-Encryption  : none
-Path WS     : /vless
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-Limit IP    : ${iplimit_display}
-Limit Quota : $quota_display
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-     PORT & SERVICE
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-VLESS WS TLS : 443
-VLESS WS HTTP: 80
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-Link VLESS WS TLS   : 
-$vlesslink1
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m
-Link VLESS WS Non-TLS : 
-$vlesslink2
-\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[037;1m"
-
-read -n 1 -s -r -p "Press any key to return to menu..."
+echo -e ""
+echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "                             XRAY VLESS WS & XTLS       " 
+echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "Remarks          : ${user}"
+echo -e "Expired On       : $exp"
+echo -e "IP/Host          : ${MYIP}"
+echo -e "Domain           : ${domain}"
+echo -e "port TLS         : $tls"
+echo -e "port none TLS    : $none"
+echo -e "id               : ${uuid}"
+echo -e "Encryption       : none"
+echo -e "network          : ws"
+echo -e "path tls         : /xvless"
+echo -e "path ntls        : /xvlessntls"
+echo -e "path httpupgrade : /xvless-hup"
+echo -e "path xhttp       : /xvless-xhttp-ntls"
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS TLS :"
+echo -e ""
+echo -e "${vlesslink1}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS NTLS : "
+echo -e ""
+echo -e "${vlesslink2}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS XTLS : "
+echo -e ""
+echo -e "${vless_vision}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS HTTPUPGRADE : "
+echo -e ""
+echo -e "${vlesslink3}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS XHTTP : "
+echo -e ""
+echo -e "${vlesslink4}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS STRX : "
+echo -e ""
+echo -e "${vlesslink5}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "LINK VLESS XLITE : "
+echo -e ""
+echo -e "${vlesslink6}"
+echo -e ""
+echo -e "${cy}═════════════════════════════════════════════════════════════════${NC} "
+echo -e "ScriptMod By Zyanv"
+read -n 1 -s -r -p "Press any key to back on menu"
+clear
 menu
