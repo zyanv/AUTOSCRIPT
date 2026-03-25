@@ -72,7 +72,7 @@ systemctl restart xray@xhttp
 clear
 echo -e ""
 echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
-echo -e "                             XRAY VLESS WS & XTLS       " 
+echo -e "                         XRAY VLESS WS & XTLS       " 
 echo -e  "${cy}═════════════════════════════════════════════════════════════════${NC} "
 echo -e "Remarks          : ${user}"
 echo -e "Expired On       : $exp"
