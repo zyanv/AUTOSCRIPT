@@ -17,13 +17,6 @@ chronyc sourcestats -v
 chronyc tracking -v
 date
 
-log() { echo -e "${GREEN}[OK]${NC} $*"; }
-warn() { echo -e "${YELLOW}[!]${NC} $*"; }
-die() { echo -e "${RED}[ERROR]${NC} $*" >&2; exit 1; }
-
-[[ $EUID -eq 0 ]] || die "Jalankan skrip sebagai root."
-export DEBIAN_FRONTEND=noninteractive
-
 DOMAIN_FILE=$(cat /etc/xray/domain)
 [[ -s "$DOMAIN_FILE" ]] || DOMAIN_FILE="/etc/xray/domain"
 [[ -s "$DOMAIN_FILE" ]] || die "Domain tidak ditemui. Simpan domain di /root/domain atau /etc/xray/domain."
